@@ -1,0 +1,14 @@
+﻿  Renderer.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+D:\Programming\C++\Projects\SpartanVector\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+D:\Programming\C++\Projects\SpartanVector\Src\Renderer.cpp(33,22): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+D:\Programming\C++\Projects\SpartanVector\Src\Renderer.cpp(33,16): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+  Window.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+D:\Programming\C++\Projects\SpartanVector\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+D:\Programming\C++\Projects\SpartanVector\Src\Window.cpp(46,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Programming\C++\Projects\SpartanVector\Src\Window.cpp(47,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Programming\C++\Projects\SpartanVector\Src\Window.cpp(48,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+D:\Programming\C++\Projects\SpartanVector\Src\Renderer.cpp(39): warning C4715: 'Renderer::WindowSetup': not all control paths return a value
+  SpartanVector.vcxproj -> D:\Programming\C++\Projects\SpartanVector\Debug\SpartanVector.exe

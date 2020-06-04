@@ -1,0 +1,2 @@
+X:\Programming\C++\Projects\SpartanVector\Debug\SpartanVector.exe
+X:\Programming\C++\Projects\SpartanVector\Debug\SpartanVector.pdb
