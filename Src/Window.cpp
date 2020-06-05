@@ -77,7 +77,6 @@ int window() {
                 ImGui::SameLine();
                 ImGui::Text(line[0].Normalize().ToString().c_str());
             }
-
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
             ImGui::End();
         }
@@ -86,6 +85,7 @@ int window() {
             if (ImGui::Button("Create vector")) {
                 
             }
+            ImGui::End();
         }
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

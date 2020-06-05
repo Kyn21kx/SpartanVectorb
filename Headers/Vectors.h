@@ -145,7 +145,7 @@ private:
 	}
 };
 //Delete this from a class and just make it a function
-class Vector3Math {
+static class Vector3Math {
 public:
 
 	static float Distance(Vector3 a, Vector3 b) {

@@ -16,8 +16,7 @@ int Renderer::WindowSetup(int width, int height) {
 
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(width, height, "Vector Test", NULL, NULL);
-    if (!window)
-    {
+    if (!window) {
         glfwTerminate();
         return -1;
     }
@@ -47,6 +46,7 @@ void Renderer::DrawVector(Vector3 v, float lineWidth) {
     // Render OpenGL here
     glLineWidth(lineWidth);
     glEnableClientState(GL_VERTEX_ARRAY);
+    glEnable(GL_LINE_SMOOTH);
     glVertexPointer(3, GL_FLOAT, 0, v.ToVertices<6>().data());
     //(GL_LINES, [Desde qué índice del arreglo empieza], [Cantidad de vectores deseados])
     glDrawArrays(GL_LINES, 0, 2);
