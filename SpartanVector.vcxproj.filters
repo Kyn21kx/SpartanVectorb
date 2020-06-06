@@ -1346,5 +1346,9 @@
     <None Include="Src\Vendor\glm\gtx\wrap.inl">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="Dependencies\GLUT\freeglut.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Dependencies\GLUT\freeglut.lib" />
   </ItemGroup>
 </Project>

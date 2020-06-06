@@ -5,6 +5,10 @@
 #include <array>
 #include <limits>
 #include <vector>
+#include "Dependencies/GLUT/include/GL/glut.h"
+#include "Dependencies/ImGui/imgui.h"
+#include "Dependencies/ImGui/imgui_impl_opengl3.h"
+#include "Dependencies/ImGui/imgui_impl_glfw.h"
 #include "Dependencies/ImGui/imgui.h"
 #include "Dependencies/ImGui/imgui_impl_opengl3.h"
 #include "Dependencies/ImGui/imgui_impl_glfw.h"

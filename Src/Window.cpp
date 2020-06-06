@@ -4,21 +4,84 @@
 #include"Headers/Shader.h"
 #include "Headers/Renderer.h"
 #include "Headers/Demo.h"
-#include "Dependencies/ImGui/imgui.h"
-#include "Dependencies/ImGui/imgui_impl_opengl3.h"
-#include "Dependencies/ImGui/imgui_impl_glfw.h"
 
-int window();
+//int window();
 
 // Our state
 bool show_demo_window = true;
 bool show_another_window = false;
 ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+Renderer* r;
+float camX, camY, camZ = -50;
+float camRotA = 40, camRotX = 1, camRotY = 1, camRotZ;
+void Update();
+void KeyboardInput(unsigned char k, int x, int y);
+int main(int a, char** arg) {
+    r = new Renderer (a, arg, 720, 480, Update, KeyboardInput);
 
-int main() {
-    window();
 }
 
+void KeyboardInput(unsigned char k, int x, int y) {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+    switch (k) {
+    case 'a':
+        std::cout << "TestKeyboard" << std::endl;
+        camX++;
+        break;
+    case 'd':
+        std::cout << "TestKeyboard" << std::endl;
+        camX--;
+        break;
+    case 'w':
+        std::cout << "TestKeyboard" << std::endl;
+        camZ++;
+        break;
+    case 's':
+        std::cout << "TestKeyboard" << std::endl;
+        camZ--;
+        break;
+    case 'z':
+        camY--;
+        break;
+    case 'x':
+        camY++;
+        break;
+    case '8':
+        camRotA++;
+        break;
+    case '2':
+        camRotA--;
+        break;
+    case '4':
+        camRotZ++;
+        break;
+    case '6':
+        camRotZ--;
+        break;
+    default:
+        break;
+    }
+    glutPostRedisplay();
+}
+
+void display() {
+    std::cout << "Testing" << std::endl;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glLoadIdentity();
+}
+
+void Update() {
+    display();
+    Vector3 test(10, 50, 20);
+    //Translate and rotate just to get a better view
+    glTranslatef(camX, camY, camZ);
+    glRotatef(camRotA, camRotX, camRotY, camRotZ);
+    r->DrawVector(test, 2);
+    Renderer::DrawCartesianPlane(100);
+    glutSwapBuffers();
+}
+/*
 int window() {
     Renderer rend;
     Shader shaderManager;
@@ -28,13 +91,13 @@ int window() {
     auto shaderCode = shaderManager.PassShader("Resources/Shaders/Basic.shader");
     std::cout << shaderCode.VertexSource << std::endl;
     unsigned int shader = shaderManager.CreateShader(shaderCode.VertexSource, shaderCode.FragmentSource);
-    /* Loop until the user closes the window */
+    /* Loop until the user closes the window 
     float r = 0, g = 0, b = 0, a = 1;
     glUseProgram(shader);
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     ImGui::StyleColorsDark();
-    ImGui_ImplGlfw_InitForOpenGL(rend.GetWindow(), true);
+    ImGui_ImplGlfw_InitForOpenGL((), true);
     ImGui_ImplOpenGL3_Init((char*)glGetString(GL_NUM_SHADING_LANGUAGE_VERSIONS));
     float x = 0.0f;
     float y = 0.0f;
@@ -47,7 +110,7 @@ int window() {
         g = g < 1 ? g + 0.0001 : 0;
         b = b < 1 ? b + 0.00001 : 0;
         shaderManager.ChangeColor(shader, "u_Color", color);
-        /* Render here */
+        /* Render here 
         rend.ClearScreen();
         //IMGUI code
         ImGui_ImplOpenGL3_NewFrame();
@@ -57,7 +120,6 @@ int window() {
         int counter = 0;
 
         {
-
             ImGui::Begin("Vector");                          // Create a window called "Hello, world!" and append into it.
 
             ImGui::Checkbox("Slider Input:", &sliderInput);
@@ -103,3 +165,4 @@ int window() {
     glfwTerminate();
     return 0;
 }
+*/
