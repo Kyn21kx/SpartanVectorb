@@ -11,7 +11,6 @@ Renderer::Renderer() {
 Renderer::Renderer(int n, char** arg, int winWidth, int winHeight, void MainLoopFunc(), void InputFunc(unsigned char k, int x, int y)) {
     windowWidth = winWidth;
     windowHeight = winHeight;
-    WindowSetup(winWidth, winHeight);
     GLUTWindow(n, arg, MainLoopFunc, InputFunc);
 }
 
@@ -61,7 +60,7 @@ void Renderer::DrawCartesianPlane(int units) {
         glColor3f(1, 1, 1);
         glLineWidth(0.01f);
         glVertex3f(0, 0, 0);
-        glVertex3f((units / 2) - 1, 0, 0);
+        glVertex3f((units / 2), 0, 0);
         glEnd();
         glPopMatrix();
     }

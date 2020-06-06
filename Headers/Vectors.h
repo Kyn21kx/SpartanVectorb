@@ -124,7 +124,7 @@ public:
 		input >> i;
 		std::cout << "Set Y: ";
 		input >> j;
-		std::cout << "Set X: ";
+		std::cout << "Set Z: ";
 		input >> k;
 		v.SetValues(i, j, k);
 		return input;
