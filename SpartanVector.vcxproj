@@ -157,18 +157,34 @@
     <ClCompile Include="Dependencies\ImGui\imgui_demo.cpp" />
     <ClCompile Include="Dependencies\ImGui\imgui_draw.cpp" />
     <ClCompile Include="Dependencies\ImGui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_impl_glut.cpp" />
+    <ClCompile Include="Dependencies\ImGui\imgui_impl_opengl2.cpp" />
     <ClCompile Include="Dependencies\ImGui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Dependencies\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Src\Demo.cpp" />
+    <ClCompile Include="Src\main.cpp" />
     <ClCompile Include="Src\Renderer.cpp" />
     <ClCompile Include="Src\Shader.cpp" />
     <ClCompile Include="Src\Vendor\glm\detail\glm.cpp" />
     <ClCompile Include="Src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Dependencies\GLEW\include\GL\eglew.h" />
+    <ClInclude Include="Dependencies\GLEW\include\GL\glew.h" />
+    <ClInclude Include="Dependencies\GLEW\include\GL\glxew.h" />
+    <ClInclude Include="Dependencies\GLEW\include\GL\wglew.h" />
+    <ClInclude Include="Dependencies\GLUT\include\GL\freeglut.h" />
+    <ClInclude Include="Dependencies\GLUT\include\GL\freeglut_ext.h" />
+    <ClInclude Include="Dependencies\GLUT\include\GL\freeglut_std.h" />
+    <ClInclude Include="Dependencies\GLUT\include\GL\freeglut_ucall.h" />
+    <ClInclude Include="Dependencies\GLUT\include\GL\glut.h" />
+    <ClInclude Include="Dependencies\GL\include\GLFW\glfw3.h" />
+    <ClInclude Include="Dependencies\GL\include\GLFW\glfw3native.h" />
     <ClInclude Include="Dependencies\ImGui\imconfig.h" />
     <ClInclude Include="Dependencies\ImGui\imgui.h" />
     <ClInclude Include="Dependencies\ImGui\imgui_impl_glfw.h" />
+    <ClInclude Include="Dependencies\ImGui\imgui_impl_glut.h" />
+    <ClInclude Include="Dependencies\ImGui\imgui_impl_opengl2.h" />
     <ClInclude Include="Dependencies\ImGui\imgui_impl_opengl3.h" />
     <ClInclude Include="Dependencies\ImGui\imgui_internal.h" />
     <ClInclude Include="Dependencies\ImGui\imstb_rectpack.h" />
@@ -463,7 +479,18 @@
     <ClInclude Include="Src\Vendor\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Dependencies\GLEW\doc\advanced.html" />
+    <None Include="Dependencies\GLEW\doc\basic.html" />
+    <None Include="Dependencies\GLEW\doc\build.html" />
+    <None Include="Dependencies\GLEW\doc\credits.html" />
+    <None Include="Dependencies\GLEW\doc\glew.html" />
+    <None Include="Dependencies\GLEW\doc\glxew.html" />
+    <None Include="Dependencies\GLEW\doc\index.html" />
+    <None Include="Dependencies\GLEW\doc\install.html" />
+    <None Include="Dependencies\GLEW\doc\log.html" />
+    <None Include="Dependencies\GLEW\doc\wglew.html" />
     <None Include="Dependencies\GLUT\freeglut.dll" />
+    <None Include="freeglut.dll" />
     <None Include="Resources\Shaders\Basic.shader" />
     <None Include="Src\Vendor\glm\detail\func_common.inl" />
     <None Include="Src\Vendor\glm\detail\func_common_simd.inl" />

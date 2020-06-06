@@ -5,11 +5,13 @@ Renderer::Renderer() {
     std::cout << "Error, no parameters have been set for the constructor of the renderer, please call the constructor from the main function and provide appropiate parameters!";
     windowHeight = 0;
     windowWidth = 0;
+    m_uiWindow = nullptr;
 }
 
 Renderer::Renderer(int n, char** arg, int winWidth, int winHeight, void MainLoopFunc(), void InputFunc(unsigned char k, int x, int y)) {
     windowWidth = winWidth;
     windowHeight = winHeight;
+    WindowSetup(winWidth, winHeight);
     GLUTWindow(n, arg, MainLoopFunc, InputFunc);
 }
 
@@ -24,26 +26,24 @@ void Renderer::Init() {
 }
 
 int Renderer::WindowSetup(int width, int height) {
-    GLFWwindow* window;
-
+    GLFWwindow* m_uiWindow;
+    Init();
     /* Initialize the library */
     if (!glfwInit())
         return -1;
 
-    /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(width, height, "Vector Test", NULL, NULL);
-    if (!window) {
+    /* Create a windowed mode m_uiWindow and its OpenGL context */
+    m_uiWindow = glfwCreateWindow(width, height, "Vector Test", NULL, NULL);
+    if (!m_uiWindow) {
         glfwTerminate();
         return -1;
     }
 
-    /* Make the window's context current */
-    glfwMakeContextCurrent(window);
+    /* Make the m_uiWindow's context current */
+    glfwMakeContextCurrent(m_uiWindow);
     if (glewInit() != GLEW_OK) {
         std::cout << "Error!" << std::endl;
     }
-
-    
     
 }
 
@@ -60,8 +60,8 @@ void Renderer::DrawCartesianPlane(int units) {
         glBegin(GL_LINES);
         glColor3f(1, 1, 1);
         glLineWidth(0.01f);
-        glVertex3f(0, -0.1, 0);
-        glVertex3f((units / 2) - 1, -0.1, 0);
+        glVertex3f(0, 0, 0);
+        glVertex3f((units / 2) - 1, 0, 0);
         glEnd();
         glPopMatrix();
     }
@@ -107,7 +107,7 @@ void Renderer::DrawVector(Vector3 fromAltOrigin, Vector3 toPoint, float lineWidt
 }*/
 
 void Renderer::ClearScreen() {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Renderer::CameraPerspective() {
@@ -116,11 +116,28 @@ void Renderer::CameraPerspective() {
 
 void Renderer::GLUTWindow(int n, char** arg, void mainLoopFunc(), void inputFunc(unsigned char k, int x, int y)) {
     glutInit(&n, arg);
-    glutInitDisplayMode(GLUT_DOUBLE);
+    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_MULTISAMPLE);
     glutInitWindowSize(windowWidth, windowHeight);
     glutCreateWindow("Testing glut");
     glutDisplayFunc(mainLoopFunc);
     glutKeyboardFunc(inputFunc);
+#pragma region ImGUI_Code
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+    // Setup Dear ImGui style
+    ImGui::StyleColorsDark();
+    //ImGui::StyleColorsClassic();
+    // Setup Platform/Renderer bindings
+    ImGui_ImplGLUT_Init();
+    ImGui_ImplGLUT_InstallFuncs();
+    ImGui_ImplOpenGL2_Init();
+#pragma endregion
     Init();
     glutMainLoop();
+    ImGui_ImplOpenGL2_Shutdown();
+    ImGui_ImplGLUT_Shutdown();
+    ImGui::DestroyContext();
 }

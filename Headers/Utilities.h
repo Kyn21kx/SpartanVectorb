@@ -6,12 +6,16 @@
 #include <limits>
 #include <vector>
 #include "Dependencies/GLUT/include/GL/glut.h"
+#include "Dependencies/GLUT/include/GL/freeglut.h"
 #include "Dependencies/ImGui/imgui.h"
 #include "Dependencies/ImGui/imgui_impl_opengl3.h"
 #include "Dependencies/ImGui/imgui_impl_glfw.h"
 #include "Dependencies/ImGui/imgui.h"
 #include "Dependencies/ImGui/imgui_impl_opengl3.h"
 #include "Dependencies/ImGui/imgui_impl_glfw.h"
+#include "Dependencies/ImGui/imgui.h"
+#include "Dependencies/ImGui/imgui_impl_glut.h"
+#include "Dependencies/ImGui/imgui_impl_opengl2.h"
 
 template <typename T>
 std::string ConvertToString(T value) {

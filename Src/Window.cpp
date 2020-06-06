@@ -5,9 +5,10 @@
 #include "Headers/Renderer.h"
 #include "Headers/Demo.h"
 
-//int window();
+int window();
 
 // Our state
+static int g_Time = 0;
 bool show_demo_window = true;
 bool show_another_window = false;
 ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
@@ -18,27 +19,22 @@ void Update();
 void KeyboardInput(unsigned char k, int x, int y);
 int main(int a, char** arg) {
     r = new Renderer (a, arg, 720, 480, Update, KeyboardInput);
-
 }
 
 void KeyboardInput(unsigned char k, int x, int y) {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    r->ClearScreen();
     glLoadIdentity();
     switch (k) {
     case 'a':
-        std::cout << "TestKeyboard" << std::endl;
         camX++;
         break;
     case 'd':
-        std::cout << "TestKeyboard" << std::endl;
         camX--;
         break;
     case 'w':
-        std::cout << "TestKeyboard" << std::endl;
         camZ++;
         break;
     case 's':
-        std::cout << "TestKeyboard" << std::endl;
         camZ--;
         break;
     case 'z':
@@ -54,10 +50,10 @@ void KeyboardInput(unsigned char k, int x, int y) {
         camRotA--;
         break;
     case '4':
-        camRotZ++;
+        camRotX++;
         break;
     case '6':
-        camRotZ--;
+        camRotX--;
         break;
     default:
         break;
@@ -67,51 +63,72 @@ void KeyboardInput(unsigned char k, int x, int y) {
 
 void display() {
     std::cout << "Testing" << std::endl;
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    // Start the Dear ImGui frame
+    ImGui_ImplOpenGL2_NewFrame();
+    ImGui_ImplGLUT_NewFrame();
+
+    {
+        static float f = 0.0f;
+        static int counter = 0;
+
+        ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+
+        ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+        ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our window open/close state
+        ImGui::Checkbox("Another Window", &show_another_window);
+
+        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f
+        ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
+
+        if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+            counter++;
+        ImGui::SameLine();
+        ImGui::Text("counter = %d", counter);
+
+        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+        ImGui::End();
+    }
+
+    // Rendering
+    ImGui::Render();
+    ImGuiIO& io = ImGui::GetIO();
+    glViewport(0, 0, (GLsizei)io.DisplaySize.x, (GLsizei)io.DisplaySize.y);
+    glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+    r->ClearScreen();
+    //glUseProgram(0); // You may want this if using this code in an OpenGL 3+ context where shaders may be bound, but prefer using the GL3+ code.
+    ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+    glutPostRedisplay();
     glLoadIdentity();
 }
 
 void Update() {
     display();
-    Vector3 test(10, 50, 20);
+    Vector3 test(10, 10, 50);
     //Translate and rotate just to get a better view
     glTranslatef(camX, camY, camZ);
     glRotatef(camRotA, camRotX, camRotY, camRotZ);
-    r->DrawVector(test, 2);
+    r->DrawVector(test, 5);
     Renderer::DrawCartesianPlane(100);
     glutSwapBuffers();
 }
-/*
+
 int window() {
-    Renderer rend;
-    Shader shaderManager;
+
     Vector4 color;
     Vector3 line[2];
     //Get the file of the shader code
-    auto shaderCode = shaderManager.PassShader("Resources/Shaders/Basic.shader");
-    std::cout << shaderCode.VertexSource << std::endl;
-    unsigned int shader = shaderManager.CreateShader(shaderCode.VertexSource, shaderCode.FragmentSource);
-    /* Loop until the user closes the window 
-    float r = 0, g = 0, b = 0, a = 1;
-    glUseProgram(shader);
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     ImGui::StyleColorsDark();
-    ImGui_ImplGlfw_InitForOpenGL((), true);
+    ImGui_ImplGlfw_InitForOpenGL((r->GetWindow()), true);
     ImGui_ImplOpenGL3_Init((char*)glGetString(GL_NUM_SHADING_LANGUAGE_VERSIONS));
     float x = 0.0f;
     float y = 0.0f;
     float z = 0.0f;
     bool sliderInput = true;
-    while (!glfwWindowShouldClose(rend.GetWindow())) {
+    while (!glfwWindowShouldClose(r->GetWindow())) {
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        color.SetValues(r, g, b, a);
-        r = r < 1 ? r + 0.001 : 0;
-        g = g < 1 ? g + 0.0001 : 0;
-        b = b < 1 ? b + 0.00001 : 0;
-        shaderManager.ChangeColor(shader, "u_Color", color);
-        /* Render here 
-        rend.ClearScreen();
+        r->ClearScreen();
         //IMGUI code
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
@@ -152,17 +169,15 @@ int window() {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         line[0].SetValues(x, y, z);
-        rend.DrawVector(line[0], 5);
+        r->DrawVector(line[0], 5);
         // Swap front and back buffers
-        glfwSwapBuffers(rend.GetWindow());
+        glfwSwapBuffers(r->GetWindow());
         // Poll for and process events
         glfwPollEvents();
     }
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
-    glDeleteProgram(shader);
     glfwTerminate();
     return 0;
 }
-*/
