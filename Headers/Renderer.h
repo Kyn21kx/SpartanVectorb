@@ -17,13 +17,8 @@ public:
 	//void DrawVector(Vector2 fromAltOrigin, Vector2 toPoint, float lineWidth);
 	void ClearScreen();
 	void CameraPerspective();
-	int WindowSetup(int width, int height);
-	GLFWwindow* GetWindow() const {
-		return m_uiWindow;
-	}
 private:
 	//Function needs to be called from main
 	void GLUTWindow(int n, char **arg, void mainLoopFunc(), void inputFunc(unsigned char k, int x, int y));
 	int windowHeight, windowWidth;
-	GLFWwindow* m_uiWindow;
 };

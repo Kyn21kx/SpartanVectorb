@@ -5,7 +5,6 @@ Renderer::Renderer() {
     std::cout << "Error, no parameters have been set for the constructor of the renderer, please call the constructor from the main function and provide appropiate parameters!";
     windowHeight = 0;
     windowWidth = 0;
-    m_uiWindow = nullptr;
 }
 
 Renderer::Renderer(int n, char** arg, int winWidth, int winHeight, void MainLoopFunc(), void InputFunc(unsigned char k, int x, int y)) {
@@ -20,30 +19,7 @@ void Renderer::Init() {
     gluPerspective(35, 1, 0.1f, 1000);
     glMatrixMode(GL_MODELVIEW);
     glEnable(GL_DEPTH_TEST);
-    glViewport(0.0f, 0.0f, 720, 480); // specifies the part of the window to which OpenGL will draw (in pixels), convert from normalised to pixels
-
-}
-
-int Renderer::WindowSetup(int width, int height) {
-    GLFWwindow* m_uiWindow;
-    Init();
-    /* Initialize the library */
-    if (!glfwInit())
-        return -1;
-
-    /* Create a windowed mode m_uiWindow and its OpenGL context */
-    m_uiWindow = glfwCreateWindow(width, height, "Vector Test", NULL, NULL);
-    if (!m_uiWindow) {
-        glfwTerminate();
-        return -1;
-    }
-
-    /* Make the m_uiWindow's context current */
-    glfwMakeContextCurrent(m_uiWindow);
-    if (glewInit() != GLEW_OK) {
-        std::cout << "Error!" << std::endl;
-    }
-    
+    glViewport(0.0f, 0.0f, windowWidth, windowHeight);
 }
 
 void Renderer::DrawCartesianPlane(int units) {

@@ -7,13 +7,15 @@
 
 // Our state
 bool show_demo_window = true;
+float x, y, z;
 bool sliderInput = true;
 ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 Renderer* r;
 float camX, camY, camZ = -50;
-float camRotA = 40, camRotX = 1, camRotY = 1, camRotZ;
-float x, y, z;
+float camRotA = 40, camRotX = -27, camRotY = 1, camRotZ;
 Vector3 test;
+bool horizontalRot;
+
 void Update();
 void KeyboardInput(unsigned char k, int x, int y);
 
@@ -38,22 +40,24 @@ void KeyboardInput(unsigned char k, int x, int y) {
         camZ--;
         break;
     case 'z':
-        camY--;
-        break;
-    case 'x':
         camY++;
         break;
-    case '8':
-        camRotA++;
+    case 'x':
+        camY--;
         break;
-    case '2':
+    case '8':
         camRotA--;
         break;
+    case '2':
+        camRotA++;
+        break;
     case '4':
-        camRotX++;
+        horizontalRot = true;
+        camRotX = 0;
         break;
     case '6':
-        camRotX--;
+        horizontalRot = false;
+        camRotX = -27;
         break;
     default:
         break;
@@ -65,9 +69,19 @@ void display() {
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL2_NewFrame();
     ImGui_ImplGLUT_NewFrame();
-
     {
-        static float f = 0.0f;
+        ImGui::Begin("Window manager");
+        ImGui::Text("Rotation mode: ");
+        ImGui::SameLine();
+        if (horizontalRot) {
+            ImGui::Text("Horizontal");
+        }
+        else {
+            ImGui::Text("Vertical");
+        }
+        ImGui::End();
+    }
+    {
         static int counter = 0;
 
         ImGui::Begin("Vector properties");                          // Create a window called "Hello, world!" and append into it.
