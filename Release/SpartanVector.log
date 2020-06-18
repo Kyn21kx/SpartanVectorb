@@ -1,27 +1,28 @@
 ﻿  Demo.cpp
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Headers\Vectors.h(221,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+X:\Programming\C++\Projects\SpartanVectorb\Headers\Vectors.h(226,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
   Renderer.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Headers\Vectors.h(221,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Src\Renderer.cpp(22,22): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Src\Renderer.cpp(22,16): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Src\Renderer.cpp(29,32): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Src\Renderer.cpp(32,28): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Src\Renderer.cpp(39,27): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+X:\Programming\C++\Projects\SpartanVectorb\Headers\Vectors.h(226,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(22,22): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(22,16): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(29,32): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(32,28): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(39,27): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
   Shader.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Headers\Vectors.h(221,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+X:\Programming\C++\Projects\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+X:\Programming\C++\Projects\SpartanVectorb\Headers\Vectors.h(226,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
   Window.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
-D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Headers\Vectors.h(221,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+X:\Programming\C++\Projects\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+X:\Programming\C++\Projects\SpartanVectorb\Headers\Vectors.h(226,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+X:\Programming\C++\Projects\SpartanVectorb\Src\Window.cpp(118,23): warning C4018: '<': signed/unsigned mismatch
 LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  8 of 1335 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    21 functions had inline decision re-evaluated but remain unchanged
+  3 of 1402 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    13 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Release\vc120.pdb'; linking object as if no debug info
-  SpartanVector.vcxproj -> D:\Programming\C++\Projects\SpartanVector\SpartanVectorb\Release\SpartanVector.exe
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'X:\Programming\C++\Projects\SpartanVectorb\Release\vc120.pdb'; linking object as if no debug info
+  SpartanVector.vcxproj -> X:\Programming\C++\Projects\SpartanVectorb\Release\SpartanVector.exe

@@ -46,7 +46,7 @@ void Renderer::DrawVector(Vector3 v, float lineWidth) {
     glPushMatrix();
     glBegin(GL_LINES);
     glLineWidth(lineWidth);
-    glColor3f(1, 1, 0);
+    glColor3f(v.r, v.g, v.b);
     glVertex3f(0, 0, 0);
     glVertex3f(v.GetX(), v.GetY(), v.GetZ());
     //(GL_LINES, [Desde qué índice del arreglo empieza], [Cantidad de vectores deseados])
@@ -70,6 +70,12 @@ void Renderer::DrawVector(Vector3 fromAltOrigin, Vector3 toPoint, float lineWidt
     //(GL_LINES, [Desde qué índice del arreglo empieza], [Cantidad de vectores deseados])
     glDrawArrays(GL_LINES, 0, 2);
     glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+void Renderer::DrawListOfVectors(std::vector<Vector3> list, float lineWidth) {
+    for (Vector3 el : list) {
+        DrawVector(el, lineWidth);
+    }
 }
 
 /*void Renderer::DrawVector(Vector2 fromAltOrigin, Vector2 toPoint, float lineWidth) {

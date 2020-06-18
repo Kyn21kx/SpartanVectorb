@@ -3,6 +3,7 @@
 
 class Vector3 {
 public:
+	float r = 0.0f, g = 0.0f, b = 0.0f;
 	Vector3() {
 		Initialize(0, 0, 0);
 	}
@@ -46,7 +47,7 @@ public:
 	//Displays an ImGUI window for the properties of the vector with the specified vector name
 	void DisplayPropertiesWindow(const char* vName) {
 		{
-			static bool sliderInput = true;  
+			static bool sliderInput = true;
 			std::string nameBuffer = "Vector properties of ";
 			nameBuffer.append(vName);
 			ImGui::Begin(nameBuffer.c_str());
@@ -59,6 +60,10 @@ public:
 				std::cout << "Set Z: ";
 				std::cin >> z;
 			}
+			ImGui::Text("Color of the vector: ");
+			ImGui::SliderFloat("R", &r, 0.0f, 1.0f);
+			ImGui::SliderFloat("G", &g, 0.0f, 1.0f);
+			ImGui::SliderFloat("B", &b, 0.0f, 1.0f);
 			if (sliderInput) {
 				ImGui::SliderFloat("X", &x, -50.0f, 50.0f);
 				ImGui::SliderFloat("Y", &y, -50.0f, 50.0f);

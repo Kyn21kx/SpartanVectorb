@@ -8,61 +8,63 @@
 #define GET_NAME(variable) (#variable)
 
 // Our state
-bool show_demo_window = true;
+bool keyInput = true;
 float x, y, z;
-bool sliderInput = true;
 ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 Renderer* r;
 float camX, camY, camZ = -50;
 float camRotA = 40, camRotX = -27, camRotY = 1, camRotZ;
-Vector3 test;
+std::vector<Vector3> testVectors;
 bool horizontalRot;
 
 void Update();
+void VectorsUI();
 void KeyboardInput(unsigned char k, int x, int y);
 
-int main(int a, char** arg) {
+int main(int a, char** arg) { 
     r = new Renderer (a, arg, 720, 480, Update, KeyboardInput);
 }
 
 void KeyboardInput(unsigned char k, int x, int y) {
     r->ClearScreen();
     glLoadIdentity();
-    switch (k) {
-    case 'a':
-        camX++;
-        break;
-    case 'd':
-        camX--;
-        break;
-    case 'w':
-        camZ++;
-        break;
-    case 's':
-        camZ--;
-        break;
-    case 'z':
-        camY++;
-        break;
-    case 'x':
-        camY--;
-        break;
-    case '8':
-        camRotA--;
-        break;
-    case '2':
-        camRotA++;
-        break;
-    case '4':
-        horizontalRot = true;
-        camRotX = 0;
-        break;
-    case '6':
-        horizontalRot = false;
-        camRotX = -27;
-        break;
-    default:
-        break;
+    if (keyInput) {
+        switch (k) {
+        case 'a':
+            camX++;
+            break;
+        case 'd':
+            camX--;
+            break;
+        case 'w':
+            camZ++;
+            break;
+        case 's':
+            camZ--;
+            break;
+        case 'z':
+            camY++;
+            break;
+        case 'x':
+            camY--;
+            break;
+        case '8':
+            camRotA--;
+            break;
+        case '2':
+            camRotA++;
+            break;
+        case '4':
+            horizontalRot = true;
+            camRotX = 0;
+            break;
+        case '6':
+            horizontalRot = false;
+            camRotX = -27;
+            break;
+        default:
+            break;
+        }
     }
     glutPostRedisplay();
 }
@@ -73,6 +75,10 @@ void display() {
     ImGui_ImplGLUT_NewFrame();
     {
         ImGui::Begin("Window manager");
+        ImGui::Checkbox("Enable / Disable Keyboard input", &keyInput);
+        if (ImGui::Button("Create new vector")) {
+            testVectors.push_back(Vector3());
+        }
         ImGui::Text("Rotation mode: ");
         ImGui::SameLine();
         if (horizontalRot) {
@@ -83,7 +89,8 @@ void display() {
         }
         ImGui::End();
     }
-    test.DisplayPropertiesWindow(GET_NAME(test));
+
+    VectorsUI();
 
     // Rendering
     ImGui::Render();
@@ -102,7 +109,15 @@ void Update() {
     //Translate and rotate just to get a better view
     glTranslatef(camX, camY, camZ);
     glRotatef(camRotA, camRotX, camRotY, camRotZ);
-    r->DrawVector(test, 15);
+    r->DrawListOfVectors(testVectors, 5.0f);
     Renderer::DrawCartesianPlane(200);
     glutSwapBuffers();
+}
+
+void VectorsUI () {
+    for (int i = 0; i < testVectors.size(); i++) {
+        std::string name = "Test #";
+        name.append(std::to_string(i));
+        testVectors[i].DisplayPropertiesWindow(name.c_str());
+    }
 }

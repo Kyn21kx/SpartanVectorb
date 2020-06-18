@@ -14,6 +14,7 @@ public:
 	void DrawVector(Vector3 v, float lineWidth);
 	//void DrawVector(Vector2 v, float lineWidth);
 	void DrawVector(Vector3 fromAltOrigin, Vector3 toPoint, float lineWidth);
+	void DrawListOfVectors(std::vector<Vector3> list, float lineWidth);
 	//void DrawVector(Vector2 fromAltOrigin, Vector2 toPoint, float lineWidth);
 	void ClearScreen();
 	void CameraPerspective();
