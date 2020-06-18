@@ -5,6 +5,8 @@
 #include "Headers/Renderer.h"
 #include "Headers/Demo.h"
 
+#define GET_NAME(variable) (#variable)
+
 // Our state
 bool show_demo_window = true;
 float x, y, z;
@@ -81,38 +83,7 @@ void display() {
         }
         ImGui::End();
     }
-    {
-        static int counter = 0;
-
-        ImGui::Begin("Vector properties");                          // Create a window called "Hello, world!" and append into it.
-        ImGui::Checkbox("Slider input", &sliderInput);      // Edit bools storing our window open/close state
-        if (ImGui::Button("Manual setup")) {
-            std::cout << "Set X: ";
-            std::cin >> x;
-            std::cout << "Set Y: ";
-            std::cin >> y;
-            std::cout << "Set Z: ";
-            std::cin >> z;
-        }
-        if (sliderInput) {
-            ImGui::SliderFloat("X", &x, -50.0f, 50.0f);
-            ImGui::SliderFloat("Y", &y, -50.0f, 50.0f);
-            ImGui::SliderFloat("Z", &z, -50.0f, 50.0f);
-        }
-        else {
-            ImGui::DragFloat("X", &x);
-            ImGui::DragFloat("Y", &y);
-            ImGui::DragFloat("Z", &z);
-        }
-        ImGui::Text("Magnitude: %f", test.GetMagnitude());
-        if (test != Vector3Math::Zero()) {
-            ImGui::Text("Normalized vector: ");
-            ImGui::Text(test.Normalize().ToString().c_str());
-            ImGui::Text("Theta angle = %f", test.GetAngle());
-        }
-        ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-        ImGui::End();
-    }
+    test.DisplayPropertiesWindow(GET_NAME(test));
 
     // Rendering
     ImGui::Render();
@@ -128,7 +99,6 @@ void display() {
 
 void Update() {
     display();
-    test.SetValues(x, y, z);
     //Translate and rotate just to get a better view
     glTranslatef(camX, camY, camZ);
     glRotatef(camRotA, camRotX, camRotY, camRotZ);

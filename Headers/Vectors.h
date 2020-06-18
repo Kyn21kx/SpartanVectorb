@@ -43,6 +43,43 @@ public:
 	bool Equals(Vector3 v3) {
 		return (x == v3.x && y == v3.y && z == v3.z);
 	}
+	//Displays an ImGUI window for the properties of the vector with the specified vector name
+	void DisplayPropertiesWindow(const char* vName) {
+		{
+			static bool sliderInput = true;  
+			std::string nameBuffer = "Vector properties of ";
+			nameBuffer.append(vName);
+			ImGui::Begin(nameBuffer.c_str());
+			ImGui::Checkbox("Slider input", &sliderInput);      // Edit bools storing our window open/close state
+			if (ImGui::Button("Manual setup")) {
+				std::cout << "Set X: ";
+				std::cin >> x;
+				std::cout << "Set Y: ";
+				std::cin >> y;
+				std::cout << "Set Z: ";
+				std::cin >> z;
+			}
+			if (sliderInput) {
+				ImGui::SliderFloat("X", &x, -50.0f, 50.0f);
+				ImGui::SliderFloat("Y", &y, -50.0f, 50.0f);
+				ImGui::SliderFloat("Z", &z, -50.0f, 50.0f);
+			}
+			else {
+				ImGui::DragFloat("X", &x);
+				ImGui::DragFloat("Y", &y);
+				ImGui::DragFloat("Z", &z);
+			}
+			ImGui::Text("Magnitude: %f", this->GetMagnitude());
+			if (*this != Vector3(0,0,0)) {
+				ImGui::Text("Normalized vector: ");
+				ImGui::Text(this->Normalize().ToString().c_str());
+				ImGui::Text("Theta angle = %f", this->GetAngle());
+			}
+			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+			ImGui::End();
+			SetValues(x, y, z);
+		}
+	}
 
 	std::string ToString() {
 		std::string strVec = "(" + ConvertToString<float>(x) + ", " + ConvertToString<float>(y) + ", " + ConvertToString<float>(z) + ")";

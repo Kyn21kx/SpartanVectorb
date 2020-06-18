@@ -69,6 +69,8 @@ unsigned int Shader::CreateShader(const std::string& vertexShader, const std::st
     return program;
 }
 
+
+
 void Shader::ChangeColor(unsigned int _shader, const char* variableName, Vector4 newColor) {
     int location = glGetUniformLocation(_shader, variableName);
     glUniform4f(location, newColor.GetX(), newColor.GetY(), newColor.GetZ(), newColor.GetW());
