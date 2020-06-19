@@ -90,7 +90,9 @@ void display() {
         ImGui::End();
     }
 
+    Vector3Math::CalculationsWindow(testVectors);
     VectorsUI();
+
 
     // Rendering
     ImGui::Render();

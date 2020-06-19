@@ -222,6 +222,46 @@ public:
 	static Vector3 Zero() {
 		return Vector3(0, 0, 0);
 	}
+	//Displays an ImGui window that manages vector math
+	static void CalculationsWindow(std::vector<Vector3> &vList) {
+		{
+			static bool dis = false;
+			static unsigned int winMapRef;
+			static WindowCalculations winEnumRef;
+			static int selectedId = 0, selectedId2 = 0;
+			ImGui::Begin("Vector calculations");
+			ImGui::CheckboxFlags("Distance between two vectors", &winMapRef, 1);
+			ImGui::CheckboxFlags("Dot product", &winMapRef, 2);
+			ImGui::CheckboxFlags("Cross product", &winMapRef, 4);
+
+			winEnumRef = (WindowCalculations)winMapRef;
+
+			switch (winEnumRef) {
+			case WindowCalculations::_Distance:
+				ImGui::Text("Distance operation:");
+				ImGui::DragInt("Id Vector A", &selectedId);
+				ImGui::DragInt("Id Vector B", &selectedId2);
+				if (ImGui::Button("Get distance")) {
+					ImGui::Text(std::to_string(Distance(vList[selectedId], vList[selectedId2])).c_str());
+				}
+				break; 
+			case WindowCalculations::_Dot:
+					
+					break;
+			case WindowCalculations::_Cross:
+				std::cout << "Test cross" << std::endl;
+				break;
+			}
+			ImGui::End();
+		}
+	}
+private:
+	enum class WindowCalculations {
+		None,
+		_Distance,
+		_Dot,
+		_Cross = 4,
+	};
 
 };
 
