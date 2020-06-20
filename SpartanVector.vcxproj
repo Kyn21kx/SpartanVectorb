@@ -195,6 +195,7 @@
     <ClInclude Include="Headers\Shader.h" />
     <ClInclude Include="Headers\Utilities.h" />
     <ClInclude Include="Headers\Vectors.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Src\Vendor\glm\common.hpp" />
     <ClInclude Include="Src\Vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="Src\Vendor\glm\detail\compute_vector_relational.hpp" />
@@ -631,6 +632,12 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="Dependencies\GLUT\freeglut.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="sparta_vector_logo_01_Z6T_icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

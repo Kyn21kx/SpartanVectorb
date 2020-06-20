@@ -32,9 +32,9 @@ void Renderer::DrawCartesianPlane(int units) {
             glTranslatef(i - units / 2, 0, 0);
             glRotatef(-90, 0, 1, 0);
         }
+        glLineWidth(0.01f);
         glBegin(GL_LINES);
         glColor3f(1, 1, 1);
-        glLineWidth(0.01f);
         glVertex3f(0, 0, 0);
         glVertex3f((units / 2), 0, 0);
         glEnd();
@@ -42,10 +42,12 @@ void Renderer::DrawCartesianPlane(int units) {
     }
 }
 
+
 void Renderer::DrawVector(Vector3 v, float lineWidth) {
     glPushMatrix();
-    glBegin(GL_LINES);
     glLineWidth(lineWidth);
+    glEnable(GL_SMOOTH);
+    glBegin(GL_LINES);
     glColor3f(v.r, v.g, v.b);
     glVertex3f(0, 0, 0);
     glVertex3f(v.GetX(), v.GetY(), v.GetZ());
@@ -53,28 +55,30 @@ void Renderer::DrawVector(Vector3 v, float lineWidth) {
     glEnd();
     glPopMatrix();
 }
-/*
-void Renderer::DrawVector(Vector2 v, float lineWidth) {
-    glLineWidth(lineWidth);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(2, GL_FLOAT, 0, v.ToVertices<4>().data());
-    //(GL_LINES, [Desde qué índice del arreglo empieza], [Cantidad de vectores deseados])
-    glDrawArrays(GL_LINES, 0, 2);
-    glDisableClientState(GL_VERTEX_ARRAY);
-}*/
 
 void Renderer::DrawVector(Vector3 fromAltOrigin, Vector3 toPoint, float lineWidth) {
+    glPushMatrix();
     glLineWidth(lineWidth);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(3, GL_FLOAT, 0, toPoint.ToVertices<6>(fromAltOrigin).data());
+    glEnable(GL_SMOOTH);
+    glBegin(GL_LINES);
+    glColor3f(toPoint.r, toPoint.g, toPoint.b);
+    glVertex3f(fromAltOrigin.GetX(), fromAltOrigin.GetY(), fromAltOrigin.GetZ());
+    glVertex3f(toPoint.GetX(), toPoint.GetY(), toPoint.GetZ());
     //(GL_LINES, [Desde qué índice del arreglo empieza], [Cantidad de vectores deseados])
-    glDrawArrays(GL_LINES, 0, 2);
-    glDisableClientState(GL_VERTEX_ARRAY);
+    glEnd();
+    glPopMatrix();
 }
 
 void Renderer::DrawListOfVectors(std::vector<Vector3> list, float lineWidth) {
     for (Vector3 el : list) {
+        float nX = (el.GetMagnitude() / 8.0f) * cosf(150);
+        float nY = (el.GetMagnitude() / 8.0f) * sinf(150);
+        Vector3 upV(nX, nY, el.GetZ());
+        Vector3 downV(nX, -nY, el.GetZ());
         DrawVector(el, lineWidth);
+        /*DrawVector(el, upV, lineWidth);
+        DrawVector(el, downV, lineWidth);
+        */
     }
 }
 
@@ -100,7 +104,7 @@ void Renderer::GLUTWindow(int n, char** arg, void mainLoopFunc(), void inputFunc
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_MULTISAMPLE);
     glutInitWindowSize(windowWidth, windowHeight);
-    glutCreateWindow("Testing glut");
+    glutCreateWindow("Spartan Vector");
     glutDisplayFunc(mainLoopFunc);
     glutKeyboardFunc(inputFunc);
 #pragma region ImGUI_Code
@@ -122,3 +126,4 @@ void Renderer::GLUTWindow(int n, char** arg, void mainLoopFunc(), void inputFunc
     ImGui_ImplGLUT_Shutdown();
     ImGui::DestroyContext();
 }
+

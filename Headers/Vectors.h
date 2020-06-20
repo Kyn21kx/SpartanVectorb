@@ -225,10 +225,14 @@ public:
 	//Displays an ImGui window that manages vector math
 	static void CalculationsWindow(std::vector<Vector3> &vList) {
 		{
-			static bool dis = false;
+			#pragma region Variables
+			static std::string strDis = "distance = ";
+			static std::string strDisAp = "";
 			static unsigned int winMapRef;
 			static WindowCalculations winEnumRef;
 			static int selectedId = 0, selectedId2 = 0;
+			#pragma endregion
+
 			ImGui::Begin("Vector calculations");
 			ImGui::CheckboxFlags("Distance between two vectors", &winMapRef, 1);
 			ImGui::CheckboxFlags("Dot product", &winMapRef, 2);
@@ -242,14 +246,29 @@ public:
 				ImGui::DragInt("Id Vector A", &selectedId);
 				ImGui::DragInt("Id Vector B", &selectedId2);
 				if (ImGui::Button("Get distance")) {
-					ImGui::Text(std::to_string(Distance(vList[selectedId], vList[selectedId2])).c_str());
+					std::cout << "Id Vector A: ";
+					std::cin >> selectedId;
+					std::cout << "Id Vector B: ";
+					std::cin >> selectedId2;
+					strDisAp = std::to_string(Distance(vList[selectedId], vList[selectedId2]));
 				}
+				strDis = "distance = " + strDisAp;
+				ImGui::Text(strDis.c_str());
 				break; 
 			case WindowCalculations::_Dot:
 					
 					break;
 			case WindowCalculations::_Cross:
-				std::cout << "Test cross" << std::endl;
+				ImGui::Text("Distance operation:");
+				ImGui::DragInt("Id Vector A", &selectedId);
+				ImGui::DragInt("Id Vector B", &selectedId2);
+				if (ImGui::Button("Get cross product")) {
+					std::cout << "Id Vector A: ";
+					std::cin >> selectedId;
+					std::cout << "Id Vector B: ";
+					std::cin >> selectedId2;
+					vList.push_back(Vector3Math::Cross(vList[selectedId], vList[selectedId2]));
+				}
 				break;
 			}
 			ImGui::End();

@@ -6,6 +6,10 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 class Renderer {
+private:
+	//Function needs to be called from main
+	void GLUTWindow(int n, char** arg, void mainLoopFunc(), void inputFunc(unsigned char k, int x, int y));
+	int windowHeight, windowWidth;
 public:
 	Renderer();
 	Renderer(int n, char** argint, int winWidth, int winHeight, void MainLoopFunc(), void InputFunc(unsigned char k, int x, int y));
@@ -18,8 +22,4 @@ public:
 	//void DrawVector(Vector2 fromAltOrigin, Vector2 toPoint, float lineWidth);
 	void ClearScreen();
 	void CameraPerspective();
-private:
-	//Function needs to be called from main
-	void GLUTWindow(int n, char **arg, void mainLoopFunc(), void inputFunc(unsigned char k, int x, int y));
-	int windowHeight, windowWidth;
 };

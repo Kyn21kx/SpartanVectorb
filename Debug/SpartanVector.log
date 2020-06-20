@@ -1,14 +1,32 @@
-﻿  Renderer.cpp
+﻿  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_glut.cpp
+  imgui_impl_opengl2.cpp
+  imgui_impl_opengl3.cpp
+  imgui_widgets.cpp
+  Demo.cpp
+X:\Programming\C++\Projects\SpartanVectorb\Headers\Vectors.h(269,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+  main.cpp
+  Renderer.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-D:\Programming\C++\Projects\SpartanVector\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
-D:\Programming\C++\Projects\SpartanVector\Src\Renderer.cpp(33,22): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
-D:\Programming\C++\Projects\SpartanVector\Src\Renderer.cpp(33,16): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+X:\Programming\C++\Projects\SpartanVectorb\Headers\Vectors.h(269,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(22,22): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(22,16): warning C4244: 'argument': conversion from 'float' to 'GLint', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(29,32): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(32,28): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Src\Renderer.cpp(39,27): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+  Shader.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+X:\Programming\C++\Projects\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+X:\Programming\C++\Projects\SpartanVectorb\Headers\Vectors.h(269,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+  glm.cpp
   Window.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-D:\Programming\C++\Projects\SpartanVector\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
-D:\Programming\C++\Projects\SpartanVector\Src\Window.cpp(46,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\Programming\C++\Projects\SpartanVector\Src\Window.cpp(47,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-D:\Programming\C++\Projects\SpartanVector\Src\Window.cpp(48,15): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+X:\Programming\C++\Projects\SpartanVectorb\Dependencies\GL\include\GLFW\glfw3.h(123): message : see previous definition of 'APIENTRY'
+X:\Programming\C++\Projects\SpartanVectorb\Headers\Vectors.h(269,2): warning C4091: 'static ': ignored on left of 'Vector3Math' when no variable is declared
+X:\Programming\C++\Projects\SpartanVectorb\Src\Window.cpp(120,23): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-D:\Programming\C++\Projects\SpartanVector\Src\Renderer.cpp(39): warning C4715: 'Renderer::WindowSetup': not all control paths return a value
-  SpartanVector.vcxproj -> D:\Programming\C++\Projects\SpartanVector\Debug\SpartanVector.exe
+LINK : fatal error LNK1104: cannot open file 'freeglutd.lib'
