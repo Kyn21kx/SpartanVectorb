@@ -43,7 +43,7 @@ void Renderer::DrawCartesianPlane(int units) {
 }
 
 
-void Renderer::DrawVector(Vector3 v, float lineWidth) {
+void Renderer::DrawVector(Vector3 v, float lineWidth) const {
     glPushMatrix();
     glLineWidth(lineWidth);
     glEnable(GL_SMOOTH);
@@ -56,7 +56,7 @@ void Renderer::DrawVector(Vector3 v, float lineWidth) {
     glPopMatrix();
 }
 
-void Renderer::DrawVector(Vector3 fromAltOrigin, Vector3 toPoint, float lineWidth) {
+void Renderer::DrawVector(Vector3 fromAltOrigin, Vector3 toPoint, float lineWidth) const {
     glPushMatrix();
     glLineWidth(lineWidth);
     glEnable(GL_SMOOTH);

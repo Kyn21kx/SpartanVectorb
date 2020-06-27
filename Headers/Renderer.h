@@ -15,9 +15,9 @@ public:
 	Renderer(int n, char** argint, int winWidth, int winHeight, void MainLoopFunc(), void InputFunc(unsigned char k, int x, int y));
 	void Init();
 	static void DrawCartesianPlane(int units);
-	void DrawVector(Vector3 v, float lineWidth);
+	void DrawVector(Vector3 v, float lineWidth) const;
 	//void DrawVector(Vector2 v, float lineWidth);
-	void DrawVector(Vector3 fromAltOrigin, Vector3 toPoint, float lineWidth);
+	void DrawVector(Vector3 fromAltOrigin, Vector3 toPoint, float lineWidth) const;
 	void DrawListOfVectors(std::vector<Vector3> list, float lineWidth);
 	//void DrawVector(Vector2 fromAltOrigin, Vector2 toPoint, float lineWidth);
 	void ClearScreen();
