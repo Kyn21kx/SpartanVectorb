@@ -76,9 +76,6 @@ void Renderer::DrawListOfVectors(std::vector<Vector3> list, float lineWidth) {
         Vector3 upV(nX, nY, el.GetZ());
         Vector3 downV(nX, -nY, el.GetZ());
         DrawVector(el, lineWidth);
-        /*DrawVector(el, upV, lineWidth);
-        DrawVector(el, downV, lineWidth);
-        */
     }
 }
 
